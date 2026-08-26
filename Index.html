@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đám Cưới Phương & Trang</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #d4a373;
+            --secondary-color: #fefae0;
+            --text-color: #333333;
+            --bg-color: #faedcd;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background-color: #fdfbf7;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .hero h3 {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        /* Container General */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+        }
+
+        /* Couple Section */
+        .couple {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .person {
+            flex: 1;
+            min-width: 250px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .person h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Event Info */
+        .event-card {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .event-time {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 15px 0 5px;
+        }
+
+        .event-address {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* RSVP Form */
+        .rsvp-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 30px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #b88655;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px;
+            background-color: #f4ece1;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Banner Đầu Trang -->
+    <header class="hero">
+        <h3>Save The Date</h3>
+        <h1>Phương & Trang</h1>
+        <p>Chúng tôi sắp kết hôn!</p>
+    </header>
+
+    <!-- Giới Thiệu Chú Rể & Cô Dâu -->
+    <section class="container">
+        <h2 class="section-title">Chú Rể & Cô Dâu</h2>
+        <div class="couple">
+            <div class="person">
+                <h3>Phương</h3>
+                <p>Chú Rể</p>
+                <p style="margin-top: 10px; font-size: 0.95rem; color: #666;">Chàng trai ấm áp, luôn đồng hành và chăm sóc cho người mình yêu thương.</p>
+            </div>
+            <div class="person">
+                <h3>Trang</h3>
+                <p>Cô Dâu</p>
+                <p style="margin-top: 10px; font-size: 0.95rem; color: #666;">Cô gái dịu dàng, luôn mang lại nụ cười và năng lượng tích cực.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thông Tin Lễ Cưới -->
+    <section class="container" style="padding-top: 0;">
+        <h2 class="section-title">Thời Gian & Địa Điểm</h2>
+        <div class="event-card">
+            <h3>Lễ Thành Hôn</h3>
+            <p class="event-time">11:00 AM | Ngày 20 Tháng 10 Năm 2026</p>
+            <p class="event-address">Trung tâm Hội nghị & Tiệc cưới White Palace<br>123 Đường Nguyễn Văn Trỗi, Quận Phú Nhuận, TP.HCM</p>
+            <a href="https://maps.google.com" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Xem bản đồ Google Maps &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Xác Nhận Tham Dự (RSVP) -->
+    <section class="container" style="padding-top: 0;">
+        <h2 class="section-title">Xác Nhận Tham Dự</h2>
+        <form class="rsvp-form" action="#" method="POST" onsubmit="alert('Cảm ơn bạn đã xác nhận tham dự!'); return false;">
+            <div class="form-group">
+                <label for="name">Họ và Tên của bạn</label>
+                <input type="text" id="name" name="name" placeholder="Nhập họ và tên" required>
+            </div>
+            <div class="form-group">
+                <label for="attendance">Bạn sẽ đến tham dự chứ?</label>
+                <select id="attendance" name="attendance" required>
+                    <option value="yes">Chắc chắn rồi, mình sẽ đến!</option>
+                    <option value="no">Rất tiếc, mình không thể tham dự</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="guests">Số người đi cùng (nếu có)</label>
+                <input type="number" id="guests" name="guests" min="0" max="5" value="0">
+            </div>
+            <div class="form-group">
+                <label for="message">Lời chúc dành cho Phương & Trang</label>
+                <textarea id="message" name="message" rows="4" placeholder="Gửi lời chúc mừng đến cô dâu chú rể..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Gửi Xác Nhận</button>
+        </form>
+    </section>
+
+    <!-- Lời Cảm Ơn -->
+    <footer>
+        <p>Cảm ơn bạn đã là một phần quan trọng trong ngày đặc biệt của Phương & Trang!</p>
+    </footer>
+
+</body>
+</html>
