@@ -1,271 +1,319 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đám Cưới Phương & Trang</title>
-    
-    <!-- Google Fonts -->
+    <title>Phương &amp; Trang | Wedding Invitation</title>
+    <meta name="description" content="You are cordially invited to celebrate the wedding of Hà Phương & Huyền Trang on December 12, 2026. Join us for a day of love, joy and celebration.">
+    <meta name="keywords" content="wedding, invitation, wedding website, Anh, Em, wedding ceremony">
+    <meta name="author" content="Hà Phương & Huyền Trang">
+    <!-- Open Graph / social preview -->
+    <meta property="og:title" content="Hà Phương & Huyền Trang | Wedding Invitation">
+    <meta property="og:description" content="You are cordially invited to celebrate our wedding day.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/photo-to-share.img">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="images/site.webmanifest">
+    <!-- Google Fonts: elegant serif for headings, refined sans/serif for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary-color: #d4a373;
-            --secondary-color: #fefae0;
-            --text-color: #333333;
-            --bg-color: #faedcd;
-            --white: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-color);
-            background-color: #fdfbf7;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--white);
-            padding: 20px;
-        }
-
-        .hero h3 {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            font-weight: 300;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-
-        /* Container General */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background-color: var(--primary-color);
-            margin: 15px auto 0;
-        }
-
-        /* Couple Section */
-        .couple {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .person {
-            flex: 1;
-            min-width: 250px;
-            background: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .person h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        /* Event Info */
-        .event-card {
-            background: var(--white);
-            padding: 40px 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        .event-time {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 15px 0 5px;
-        }
-
-        .event-address {
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        /* RSVP Form */
-        .rsvp-form {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .btn-submit {
-            background-color: var(--primary-color);
-            color: var(--white);
-            border: none;
-            padding: 14px 30px;
-            font-size: 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-
-        .btn-submit:hover {
-            background-color: #b88655;
-        }
-
-        /* Footer */
-        footer {
-            padding: 30px;
-            background-color: #f4ece1;
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-
-    <!-- Banner Đầu Trang -->
-    <header class="hero">
-        <h3>Save The Date</h3>
-        <h1>Phương & Trang</h1>
-        <p>Chúng tôi sắp kết hôn!</p>
+    <!-- ============================================================================
+        DECORATIVE FLOATING FLORAL ELEMENTS (purely decorative, aria-hidden)
+    ============================================================================ -->
+    <div class="floating-decor" aria-hidden="true">
+        <span class="petal petal-1">&#10047;</span>
+        <span class="petal petal-2">&#10047;</span>
+        <span class="petal petal-3">&#10047;</span>
+        <span class="petal petal-4">&#10047;</span>
+        <span class="petal petal-5">&#10047;</span>
+    </div>
+    <!-- ============================================================================
+        NAVIGATION
+    ============================================================================ -->
+    <header class="site-nav" id="siteNav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">P &amp; T</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#story" class="nav-link">Our Story</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#info" class="nav-link">Wedding Info</a>
+                <a href="#countdown" class="nav-link">Countdown</a>
+                <a href="#wishes" class="nav-link">Wishes</a>
+                <a href="#gift" class="nav-link">Gift</a>
+            </nav>
+        </div>
     </header>
-
-    <!-- Giới Thiệu Chú Rể & Cô Dâu -->
-    <section class="container">
-        <h2 class="section-title">Chú Rể & Cô Dâu</h2>
-        <div class="couple">
-            <div class="person">
-                <h3>Phương</h3>
-                <p>Chú Rể</p>
-                <p style="margin-top: 10px; font-size: 0.95rem; color: #666;">Chàng trai ấm áp, luôn đồng hành và chăm sóc cho người mình yêu thương.</p>
+    <!-- =======================================================
+        1. HERO SECTION
+    ======================================================== -->
+    <section id="hero" class="hero">
+        <div class="hero-bg" style="background-image:url('images/DSC_5889.JPG');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-ornament hero-ornament-top" aria-hidden="true">&#10084;</div>
+        <div class="hero-content">
+            <p class="hero-eyebrow reveal-fade">We Are Getting Married</p>
+            <h1 class="hero-title reveal-fade delay-1">The Wedding Of</h1>
+            <h2 class="hero-names reveal-fade delay-2">
+                <span class="name-groom">Hà Phương</span>
+                <span class="hero-amp">&amp;</span>
+                <span class="name-bride">Huyền Trang</span>
+            </h2>
+            <div class="hero-divider reveal-fade delay-3"><span></span><i>&#10047;</i><span></span></div>
+            <p class="hero-date reveal-fade delay-3">Saturday &middot; December 12, 2026</p>
+            <a href="#story" class="btn btn-outline reveal-fade delay-4">Discover Our Story</a>
+        </div>
+        <a href="#story" class="scroll-indicator" aria-label="Scroll down">
+            <span class="scroll-mouse"><span class="scroll-dot"></span></span>
+        </a>
+    </section>
+    <!-- ============================================================================
+        2. OUR STORY SECTION
+    ============================================================================ -->
+    <section id="story" class="section story-section">
+        <div class="section-heading reveal-on-scroll">
+            <p class="section-eyebrow">Since The Beginning</p>
+            <h2 class="section-title">Our Love Story</h2>
+            <div class="section-divider"><span></span><i>&#10047;</i><span></span></div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-line" aria-hidden="true"></div>
+            <div class="timeline-item reveal-on-scroll">
+                <div class="timeline-photo">
+                    <img src="images/story-1.jpg" alt="How we first met">
+                </div>
+                <div class="timeline-card">
+                    <span class="timeline-date">Spring, 2019</span>
+                    <h3>How We Met</h3>
+                    <p>A chance encounter at a friend's gathering turned into hours of conversation neither of us expected.
+                        Replace this text with the story of how you first met.</p>
+                </div>
             </div>
-            <div class="person">
-                <h3>Trang</h3>
-                <p>Cô Dâu</p>
-                <p style="margin-top: 10px; font-size: 0.95rem; color: #666;">Cô gái dịu dàng, luôn mang lại nụ cười và năng lượng tích cực.</p>
+            <div class="timeline-item reverse reveal-on-scroll">
+                <div class="timeline-photo">
+                    <img src="images/story-1.jpg" alt="Our first date">
+                </div>
+                <div class="timeline-card">
+                    <span class="timeline-date">Autumn, 2020</span>
+                    <h3>The First Date</h3>
+                    <p>Nervous smiles, a quiet cafe, and a conversation that lasted long after the coffee went cold.
+                        Replace this text with your own memory.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal-on-scroll">
+                <div class="timeline-photo">
+                    <img src="images/story-1.jpg" alt="Moving in together">
+                </div>
+                <div class="timeline-card">
+                    <span class="timeline-date">Summer, 2023</span>
+                    <h3>Building A Life Together</h3>
+                    <p>We found a place to call our own and learned what it truly means to build a life alongside someone you love.
+                        Replace this text with your own milestone.</p>
+                </div>
+            </div>
+            <div class="timeline-item reverse reveal-on-scroll">
+                <div class="timeline-photo">
+                    <img src="images/story-1.jpg" alt="The proposal">
+                </div>
+                <div class="timeline-card">
+                    <span class="timeline-date">October 25, 2026</span>
+                    <h3>The Proposal</h3>
+                    <p>Under a sky full of stars, a question was asked and answered with joyful tears.
+                        Replace this text with your proposal story.</p>
+                </div>
+            </div>
+    </section>
+    <!-- ============================================================================
+        3. GALLERY SECTION
+    ============================================================================ -->
+    <section id="gallery" class="section gallery-section">
+        <div class="section-heading reveal-on-scroll">
+            <p class="section-eyebrow">Moments We Cherish</p>
+            <h2 class="section-title">Our Gallery</h2>
+            <div class="section-divider"><span></span><i>&#10047;</i><span></span></div>
+        </div>
+        <div class="gallery-grid reveal-on-scroll">
+            <div class="gallery-item item-tall"><img src="images/DSC_5985.jpg" alt="Gallery photo 1"></div>
+            <div class="gallery-item"><img src="images/DSC_5889.JPG" alt="Gallery photo 2"></div>
+            <div class="gallery-item item-tall"><img src="images/DSC_5985.jpg" alt="Gallery photo 3"></div>
+            <div class="gallery-item"><img src="images/DSC_5889.JPG" alt="Gallery photo 4"></div>
+            <div class="gallery-item item-tall"><img src="images/DSC_5985.JPG" alt="Gallery photo 5"></div>
+            <div class="gallery-item"><img src="images/DSC_5889.JPG" alt="Gallery photo 6"></div>
+            <div class="gallery-item item-tall"><img src="images/DSC_5985.JPG" alt="Gallery photo 7"></div>
+            <div class="gallery-item"><img src="images/DSC_5889.JPG" alt="Gallery photo 8"></div>
+        </div>
+    </section>
+    <!-- Lightbox markup (populated by js/main.js) -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#10094;</button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="Enlarged gallery preview">
+        <button class="lightbox-next" id="lightboxNext" aria-label="Next photo">&#10095;</button>
+    </div>
+    <!-- ============================================================================
+        4. WEDDING INFORMATION SECTION
+    ============================================================================ -->
+    <section id="info" class="section info-section">
+        <div class="section-heading reveal-on-scroll">
+            <p class="section-eyebrow">Save The Date</p>
+            <h2 class="section-title">Wedding Information</h2>
+            <div class="section-divider"><span></span><i>&#10047;</i><span></span></div>
+        </div>
+        <div class="info-grid reveal-on-scroll">
+            <div class="info-card">
+                <div class="info-icon" aria-hidden="true">&#128197;</div>
+                <h3>Date</h3>
+                <p>Sunday, October 25, 2026</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon" aria-hidden="true">&#128337;</div>
+                <h3>Time</h3>
+                <p>Ceremony begins at 5:00 PM<br>Reception to follow at 6:30 PM</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon" aria-hidden="true">&#127963;&#65039;</div>
+                <h3>Venue</h3>
+                <p>Rose Garden Palace Ballroom</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon" aria-hidden="true">&#128205;</div>
+                <h3>Address</h3>
+                <p>123 Nguyen Hue Street,<br>District 1, Ho Chi Minh City</p>
+            </div>
+        </div>
+        <div class="info-map reveal-on-scroll">
+            <a class="btn btn-solid" href="https://www.google.com/maps/search/?api=1&query=123+Nguyen+Hue+Street+District+1+Ho+Chi+Minh+City" target="_blank" rel="noopener noreferrer">
+                &#128205; View On Google Maps
+            </a>
+        </div>
+    </section>
+    <!-- ============================================================================
+        5. COUNTDOWN SECTION
+    ============================================================================ -->
+    <section id="countdown" class="section countdown-section">
+        <div class="countdown-bg" aria-hidden="true"></div>
+        <div class="section-heading reveal-on-scroll">
+            <p class="section-eyebrow">Almost There</p>
+            <h2 class="section-title section-title-light">Counting Down To Forever</h2>
+            <div class="section-divider light"><span></span><i>&#10047;</i><span></span></div>
+        </div>
+        <!-- data-wedding-date is read by js/main.js -->
+        <div class="countdown" id="countdown-timer" data-wedding-date="2026-10-25T17:00:00">
+            <div class="countdown-box">
+                <span class="countdown-number" id="cd-days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="cd-hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="cd-minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-box">
+                <span class="countdown-number" id="cd-seconds">00</span>
+                <span class="countdown-label">Seconds</span>
             </div>
         </div>
     </section>
-
-    <!-- Thông Tin Lễ Cưới -->
-    <section class="container" style="padding-top: 0;">
-        <h2 class="section-title">Thời Gian & Địa Điểm</h2>
-        <div class="event-card">
-            <h3>Lễ Thành Hôn</h3>
-            <p class="event-time">11:00 AM | Ngày 20 Tháng 10 Năm 2026</p>
-            <p class="event-address">Trung tâm Hội nghị & Tiệc cưới White Palace<br>123 Đường Nguyễn Văn Trỗi, Quận Phú Nhuận, TP.HCM</p>
-            <a href="https://maps.google.com" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Xem bản đồ Google Maps &rarr;</a>
+    <!-- ============================================================================
+        6. WISHES SECTION
+    ============================================================================ -->
+    <section id="wishes" class="section wishes-section">
+        <div class="section-heading reveal-on-scroll">
+            <p class="section-eyebrow">Share Your Love</p>
+            <h2 class="section-title">Wishes For The Couple</h2>
+            <div class="section-divider"><span></span><i>&#10047;</i><span></span></div>
+        </div>
+        <div class="wishes-wrap reveal-on-scroll">
+            <form id="wishForm" class="wish-form" novalidate>
+                <div class="form-row">
+                    <label for="wishName">Your Name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="wishName" name="name" placeholder="e.g. John Smith" autocomplete="name">
+                    <span class="form-error" id="wishNameError"></span>
+                </div>
+                <div class="form-row">
+                    <label for="wishContent">Your Message <span aria-hidden="true">*</span></label>
+                    <textarea id="wishContent" name="content" rows="4" placeholder="Write your congratulations and best wishes..."></textarea>
+                    <span class="form-error" id="wishContentError"></span>
+                </div>
+                <button type="submit" class="btn btn-solid" id="wishSubmitBtn">
+                    <span class="btn-text">Send Your Wishes</span>
+                </button>
+                <p class="form-status" id="wishFormStatus" role="status" aria-live="polite"></p>
+            </form>
+            <div class="wishes-list-wrap">
+                <h3 class="wishes-list-title">Messages From Our Loved Ones</h3>
+                <ul class="wishes-list" id="wishesList">
+                    <!-- Wishes are injected here by js/main.js via AJAX -->
+                    <li class="wish-loading" id="wishesLoading">Loading wishes...</li>
+                </ul>
+            </div>
         </div>
     </section>
-
-    <!-- Xác Nhận Tham Dự (RSVP) -->
-    <section class="container" style="padding-top: 0;">
-        <h2 class="section-title">Xác Nhận Tham Dự</h2>
-        <form class="rsvp-form" action="#" method="POST" onsubmit="alert('Cảm ơn bạn đã xác nhận tham dự!'); return false;">
-            <div class="form-group">
-                <label for="name">Họ và Tên của bạn</label>
-                <input type="text" id="name" name="name" placeholder="Nhập họ và tên" required>
+    <!-- ============================================================================
+        7. GIFT SECTION
+    ============================================================================ -->
+    <section id="gift" class="section gift-section">
+        <div class="section-heading reveal-on-scroll">
+            <p class="section-eyebrow">With Love &amp; Gratitude</p>
+            <h2 class="section-title">Wedding Gift</h2>
+            <div class="section-divider"><span></span><i>&#10047;</i><span></span></div>
+            <p class="gift-intro">Your presence at our wedding is the greatest gift of all.
+                Should you wish to honor us further, a small token below would be received with love and gratitude.</p>
+        </div>
+        <div class="gift-card reveal-on-scroll">
+            <div class="gift-frame">
+                <img src="images/qr-code.svg" alt="Bank transfer QR code">
             </div>
-            <div class="form-group">
-                <label for="attendance">Bạn sẽ đến tham dự chứ?</label>
-                <select id="attendance" name="attendance" required>
-                    <option value="yes">Chắc chắn rồi, mình sẽ đến!</option>
-                    <option value="no">Rất tiếc, mình không thể tham dự</option>
-                </select>
+            <div class="gift-details">
+                <div class="gift-row">
+                    <span class="gift-label">Account Name</span>
+                    <span class="gift-value">NGUYEN MINH ANH</span>
+                </div>
+                <div class="gift-row">
+                    <span class="gift-label">Account Number</span>
+                    <span class="gift-value">0123 4567 8910</span>
+                </div>
+                <div class="gift-row">
+                    <span class="gift-label">Bank Name</span>
+                    <span class="gift-value">Vietcombank &ndash; HCMC Branch</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="guests">Số người đi cùng (nếu có)</label>
-                <input type="number" id="guests" name="guests" min="0" max="5" value="0">
-            </div>
-            <div class="form-group">
-                <label for="message">Lời chúc dành cho Phương & Trang</label>
-                <textarea id="message" name="message" rows="4" placeholder="Gửi lời chúc mừng đến cô dâu chú rể..."></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Gửi Xác Nhận</button>
-        </form>
+        </div>
     </section>
-
-    <!-- Lời Cảm Ơn -->
-    <footer>
-        <p>Cảm ơn bạn đã là một phần quan trọng trong ngày đặc biệt của Phương & Trang!</p>
+    <!-- ============================================================================
+        FOOTER
+    ============================================================================ -->
+    <footer class="site-footer">
+        <div class="footer-ornament" aria-hidden="true">&#10047;</div>
+        <p class="footer-thanks">With Heartfelt Thanks</p>
+        <h2 class="footer-names">Minh Anh &amp; Thuy Em</h2>
+        <p class="footer-note">We are endlessly grateful to have you share in our joy. Thank you for being part of our story.</p>
+        <p class="footer-copy">&copy; <span id="footerYear"></span> Minh Anh &amp; Thuy Em &middot; Made with love</p>
     </footer>
-
+    <!-- ============================================================================
+        SCRIPTS
+    ============================================================================ -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
+</html>
+</body>
+
 </html>
