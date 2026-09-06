@@ -97,5 +97,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Wedding website running at https://phuongtrangwedding.github.io:${PORT}`);
+    console.log(`Wedding website running at http://localhost:${PORT}`);
 });
