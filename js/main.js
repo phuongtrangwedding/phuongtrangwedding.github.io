@@ -341,7 +341,7 @@ $(function () {
             // status 0 = no server reachable at all (file:// or offline); 404 = no
             // api/wishes route (e.g. GitHub Pages static hosting, no backend).
             // Both mean "no backend to save to" - fall back to localStorage.
-            if (xhr.status === 0 || xhr.status === 404) {
+            if (xhr.status === 0 || xhr.status === 404 || xhr.status === 404 || xhr.status === 405) {
                 addLocalWish({
                     name: name.trim(),
                     content: content.trim(),
