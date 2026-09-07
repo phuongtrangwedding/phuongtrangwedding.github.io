@@ -176,11 +176,19 @@ $(function () {
     /* --------------------------------------------------------------------------
         WISHES SECTION - AJAX SUBMIT + LOAD (backed by server.js + wishes.json)
     -------------------------------------------------------------------------- */
+    // GET always reads the static wishes.json file - this works identically
+    // whether it's served by server.js (npm start) or as a plain static file
+    // on GitHub Pages, which has no server to run api/wishes against.
+    var WISHES_JSON = 'wishes.json';
+    // POST only works when server.js is actually running (local dev). On
+    // GitHub Pages this 404s (no backend), so submissions fall back to
+    // localStorage - see LOCAL_WISHES_KEY below.
     var WISHES_API = 'api/wishes';
     var LOCAL_WISHES_KEY = 'weddingWishesLocalFallback';
 
-    // Used only when the server (server.js) can't be reached - e.g. index.html
-    // was opened directly as a file:// page instead of via http://localhost:3000.
+    // Used whenever the backend (server.js) can't be reached - e.g. index.html
+    // was opened directly as a file:// page, or the site is hosted statically
+    // on GitHub Pages with no Node server behind it.
     // Keeps the form usable, but these wishes stay on this device/browser only.
     function getLocalWishes() {
         try {
@@ -208,9 +216,7 @@ $(function () {
 
     function formatTime(isoString) {
         var d = new Date(isoString);
-
         if (isNaN(d.getTime())) return '';
-
         return d.toLocaleString(undefined, {
             year: 'numeric',
             month: 'short',
@@ -253,19 +259,18 @@ $(function () {
 
     function loadWishes() {
         $.ajax({
-            url: WISHES_API,
+            url: WISHES_JSON,
             method: 'GET',
-            dataType: 'json'
+            dataType: 'json',
+            cache: false
         }).done(function (data) {
-            renderWishes(data);
+            var local = getLocalWishes();
+            var combined = (Array.isArray(data) ? data : []).concat(local);
+            renderWishes(combined, local.length ? 'Some wishes below were saved on this device only (no live server to share them yet).' : '');
         }).fail(function (xhr) {
             console.error('Wishes GET failed:', xhr.status, xhr.statusText, xhr.responseText);
-            if (xhr.status === 0) {
-                // Server unreachable (likely opened as file:// or wrong port) - fall back to this device's local
-                renderWishes(getLocalWishes(), 'Not connected to the server &mdash; showing wishes saved on this device only. Run <code>npm start</code> and open <code>http://localhost:3000</code> to share wishes with everyone.');
-            } else {
-                $('#wishesList').html('<li class="wish-empty">Unable to load wishes right now (HTTP ' + xhr.status);
-            }
+            // wishes.json itself couldn't be loaded - fall back to this device's local wishes only.
+            renderWishes(getLocalWishes(), 'Unable to load shared wishes right now &mdash; showing wishes saved on this device only.');
         });
     }
 
@@ -291,6 +296,7 @@ $(function () {
         } else {
             setFieldError('wishName', '');
         }
+
         if (!content.trim()) {
             setFieldError('wishContent', 'Please write a short message.');
             valid = false;
@@ -316,8 +322,8 @@ $(function () {
             $status.addClass('error').text('Please fill in all required fields.');
             return;
         }
-
         $submitBtn.prop('disabled', true);
+
         $.ajax({
             url: WISHES_API,
             method: 'POST',
@@ -329,20 +335,21 @@ $(function () {
         }).done(function (data) {
             $status.addClass('success').text('Thank you! Your wish has been shared.');
             $form.trigger('reset');
-            renderWishes(data.wishes || []);
+            renderWishes((data.wishes || []).concat(getLocalWishes()));
         }).fail(function (xhr) {
             console.error('Wishes POST failed:', xhr.status, xhr.statusText, xhr.responseText);
-
-            if (xhr.status === 0) {
-                // Server unreachable - save locally so the form still works, instead of just failing.
-                var localWishes = addLocalWish({
+            // status 0 = no server reachable at all (file:// or offline); 404 = no
+            // api/wishes route (e.g. GitHub Pages static hosting, no backend).
+            // Both mean "no backend to save to" - fall back to localStorage.
+            if (xhr.status === 0 || xhr.status === 404) {
+                addLocalWish({
                     name: name.trim(),
                     content: content.trim(),
-                    createdAt: new Date()
+                    createdAt: new Date().toISOString()
                 });
-                $status.addClass('success').text('Server not connected, so your wish was saved on this device only (not shared with other guests).');
+                $status.addClass('success').text('This site has no live server, so your wish was saved on this device only (not shared with other guests).');
                 $form.trigger('reset');
-                renderWishes(localWishes, 'Not connected to the server &mdash; showing wishes saved on this device only. Run <code>npm start</code> and open <code>http://localhost:3000</code> to share wishes with everyone.');
+                loadWishes();
                 return;
             }
 
@@ -353,6 +360,10 @@ $(function () {
             $submitBtn.prop('disabled', false);
         });
     });
+
+
+
+
 
     loadWishes();
 
