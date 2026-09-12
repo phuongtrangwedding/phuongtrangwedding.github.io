@@ -6,29 +6,6 @@ $.easing.easeInOutCubic = function (x) {
 };
 
 $(function () {
-    /* --------------------------------------------------------------------------
-        SMOOTH SCROLL NAVIGATION
-    -------------------------------------------------------------------------- */
-    // $('a[href^="#"]').on('click', function (e) {
-    //     var target = $($(this).attr('href'));
-
-    //     if (target.length) {
-    //         e.preventDefault();
-    //         $('html, body').stop().animate({
-    //                 scrollTop: target.offset().top - 70
-    //             },
-    //             900,
-    //             'easeInOutCubic'
-    //         );
-
-    //         $('#navLinks').removeClass('open');
-    //         $('#navToggle').removeClass('open').attr('aria-expanded', 'false');
-    //     }
-    // });
-
-    /* --------------------------------------------------------------------------
-        MOBILE NAV TOGGLE
-    -------------------------------------------------------------------------- */
     $('#navToggle').on('click', function () {
         var expanded = $(this).hasClass('open');
         $(this).toggleClass('open');
@@ -173,51 +150,21 @@ $(function () {
         });
     })();
 
-    /* --------------------------------------------------------------------------
-        WISHES SECTION - AJAX SUBMIT + LOAD (backed by server.js + wishes.json)
-    -------------------------------------------------------------------------- */
-    // GET always reads the static wishes.json file - this works identically
-    // whether it's served by server.js (npm start) or as a plain static file
-    // on GitHub Pages, which has no server to run api/wishes against.
-    var WISHES_JSON = 'wishes.json';
-    // POST only works when server.js is actually running (local dev). On
-    // GitHub Pages this 404s (no backend), so submissions fall back to
-    // localStorage - see LOCAL_WISHES_KEY below.
-    var WISHES_API = 'api/wishes';
-    var LOCAL_WISHES_KEY = 'weddingWishesLocalFallback';
+    /* ----------------------------------------------------------
+       WISHES SECTION - Firestore-backed (works identically on GitHub Pages
+       and locally, since it's just client-side JS talking to Firestore -
+       see js/firebase-config.js for the project config, and firestore.rules
+       for the write validation rules).
 
-    // Used whenever the backend (server.js) can't be reached - e.g. index.html
-    // was opened directly as a file:// page, or the site is hosted statically
-    // on GitHub Pages with no Node server behind it.
-    // Keeps the form usable, but these wishes stay on this device/browser only.
-    function getLocalWishes() {
-        try {
-            var raw = window.localStorage.getItem(LOCAL_WISHES_KEY);
-            return raw ? JSON.parse(raw) : [];
-        } catch (e) {
-            return [];
-        }
-    }
-
-    function addLocalWish(wish) {
-        var wishes = getLocalWishes();
-        wishes.push(wish);
-        try {
-            window.localStorage.setItem(LOCAL_WISHES_KEY, JSON.stringify(wishes));
-        } catch (e) {
-            /* localStorage unavailable - ignore, nothing else we can do */
-        }
-        return wishes;
-    }
+    var wishesCollection = db.collection('wishes'); -------------------------- */
 
     function escapeHtml(str) {
         return $('<div>').text(str).html();
     }
 
-    function formatTime(isoString) {
-        var d = new Date(isoString);
-        if (isNaN(d.getTime())) return '';
-        return d.toLocaleString(undefined, {
+    function formatTime(date) {
+        if (!date || isNaN(date.getTime())) return '';
+        return date.toLocaleString(undefined, {
             year: 'numeric',
             month: 'short',
             day: 'numeric',
@@ -239,13 +186,8 @@ $(function () {
             return;
         }
 
-        // Latest first
-        var sorted = wishes.slice().sort(function (a, b) {
-            return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
-        });
-
-        sorted.forEach(function (wish) {
-            var timeLabel = wish.createdAt ? formatTime(wish.createdAt) : '';
+        wishes.forEach(function (wish) {
+            var timeLabel = formatTime(wish.createdAt);
             var $item = $(
                 '<li class="wish-item">' +
                 '<span class="wish-name">' + escapeHtml(wish.name) + '</span>' +
@@ -257,22 +199,28 @@ $(function () {
         });
     }
 
-    function loadWishes() {
-        $.ajax({
-            url: WISHES_JSON,
-            method: 'GET',
-            dataType: 'json',
-            cache: false
-        }).done(function (data) {
-            var local = getLocalWishes();
-            var combined = (Array.isArray(data) ? data : []).concat(local);
-            renderWishes(combined, local.length ? 'Some wishes below were saved on this device only (no live server to share them yet).' : '');
-        }).fail(function (xhr) {
-            console.error('Wishes GET failed:', xhr.status, xhr.statusText, xhr.responseText);
-            // wishes.json itself couldn't be loaded - fall back to this device's local wishes only.
-            renderWishes(getLocalWishes(), 'Unable to load shared wishes right now &mdash; showing wishes saved on this device only.');
+    // Real-time listener: renders instantly on page load, and any guest's new
+    // wish appears live for everyone else with the page open (no refresh
+    // needed). includeMetadataChanges + the 'estimate' timestamp option below
+    // make a just-submitted wish appear immediately, before the server ack.
+    wishesCollection.orderBy('createdAt', 'desc').onSnapshot({
+        includeMetadataChanges: true
+    }, function (snapshot) {
+        var wishes = snapshot.docs.map(function (doc) {
+            var data = doc.data({
+                serverTimestamps: 'estimate'
+            });
+            return {
+                name: data.name,
+                content: data.content,
+                createdAt: data.createdAt ? data.createdAt.toDate() : null
+            };
         });
-    }
+        renderWishes(wishes);
+    }, function (err) {
+        console.error('Wishes listener failed:', err);
+        renderWishes([], 'Unable to load shared wishes right now. Please refresh the page.');
+    });
 
     function setFieldError(fieldId, message) {
         var $field = $('#' + fieldId);
@@ -322,53 +270,26 @@ $(function () {
             $status.addClass('error').text('Please fill in all required fields.');
             return;
         }
+
         $submitBtn.prop('disabled', true);
 
-        $.ajax({
-            url: WISHES_API,
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                name: name.trim(),
-                content: content.trim()
-            })
-        }).done(function (data) {
+        wishesCollection.add({
+            name: name.trim(),
+            content: content.trim(),
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(function () {
             $status.addClass('success').text('Thank you! Your wish has been shared.');
             $form.trigger('reset');
-            renderWishes((data.wishes || []).concat(getLocalWishes()));
-        }).fail(function (xhr) {
-            console.error('Wishes POST failed:', xhr.status, xhr.statusText, xhr.responseText);
-            // status 0 = no server reachable at all (file:// or offline); 404 = no
-            // api/wishes route (e.g. GitHub Pages static hosting, no backend).
-            // Both mean "no backend to save to" - fall back to localStorage.
-            if (xhr.status === 0 || xhr.status === 404 || xhr.status === 404 || xhr.status === 405) {
-                addLocalWish({
-                    name: name.trim(),
-                    content: content.trim(),
-                    createdAt: new Date().toISOString()
-                });
-                $status.addClass('success').text('This site has no live server, so your wish was saved on this device only (not shared with other guests).');
-                $form.trigger('reset');
-                loadWishes();
-                return;
-            }
-
-            var message = (xhr.responseJSON && xhr.responseJSON.message) ||
-                'Server responded with an error (HTTP ' + xhr.status + '). Open the browser console for details.';
-            $status.addClass('error').text(message);
-        }).always(function () {
+        }).catch(function (err) {
+            console.error('Wishes add failed:', err);
+            $status.addClass('error').text('Unable to save your wish right now. Please try again.');
+        }).finally(function () {
             $submitBtn.prop('disabled', false);
         });
     });
 
-
-
-
-
-    loadWishes();
-
-    /* --------------------------------------------------------------------------
-        FOOTER YEAR
-    -------------------------------------------------------------------------- */
+    /* ----------------------------------------------------------
+       FOOTER YEAR
+       ---------------------------------------------------------- */
     $('#footerYear').text(new Date().getFullYear());
 });

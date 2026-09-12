@@ -2,6 +2,72 @@
    WEDDING WEBSITE STYLESHEET
    Main color: #00513b | Secondary: white, gold, cream
    ============================================================================ */
+
+@font-face {
+    font-family: '1FTV-SAGIRE';
+    src: url('../fonts/1FTV-SAGIRE.eot');
+    src: url('../fonts/1FTV-SAGIRE.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/1FTV-SAGIRE.woff2') format('woff2'),
+        url('../fonts/1FTV-SAGIRE.woff') format('woff'),
+        url('../fonts/M1FTV-SAGIRE.ttf') format('truetype'),
+        url('../fonts/1FTV-SAGIRE.svg#1FTV-SAGIRE') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ballet 24pt';
+    src: url('../fonts/Ballet_24pt-Regular.eot');
+    src: url('../fonts/Ballet_24pt-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ballet_24pt-Regular.woff2') format('woff2'),
+        url('../fonts/Ballet_24pt-Regular.woff') format('woff'),
+        url('../fonts/MBallet_24pt-Regular.ttf') format('truetype'),
+        url('../fonts/Ballet_24pt-Regular.svg#Ballet_24pt-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JosefinSans';
+    src: url('../fonts/JosefinSans-Regular.eot');
+    src: url('../fonts/JosefinSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/JosefinSans-Regular.woff2') format('woff2'),
+        url('../fonts/JosefinSans-Regular.woff') format('woff'),
+        url('../fonts/MJosefinSans-Regular.ttf') format('truetype'),
+        url('../fonts/JosefinSans-Regular.svg#JosefinSans-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JosefinSans Light';
+    src: url('../fonts/JosefinSans-Light.eot');
+    src: url('../fonts/JosefinSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/JosefinSans-Light.woff2') format('woff2'),
+        url('../fonts/JosefinSans-Light.woff') format('woff'),
+        url('../fonts/MJosefinSans-Light.ttf') format('truetype'),
+        url('../fonts/JosefinSans-Light.svg#JosefinSans-Light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JosefinSans';
+    src: url('../fonts/JosefinSans-SemiBold.eot');
+    src: url('../fonts/JosefinSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/JosefinSans-SemiBold.woff2') format('woff2'),
+        url('../fonts/JosefinSans-SemiBold.woff') format('woff'),
+        url('../fonts/MJosefinSans-SemiBold.ttf') format('truetype'),
+        url('../fonts/JosefinSans-SemiBold.svg#JosefinSans-SemiBold') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --color-primary: #00513b;
     --color-primary-light: #0d6e50;
@@ -34,7 +100,7 @@ html {
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: 'JosefinSans';
     color: var(--color-text);
     background: var(--color-cream);
     line-height: 1.7;
@@ -58,7 +124,7 @@ ul {
 h1,
 h2,
 h3 {
-    font-family: var(--font-heading);
+    font-family: '1FTV-SAGIRE';
     font-weight: 600;
 }
 
@@ -76,7 +142,7 @@ h3 {
 }
 
 .section-eyebrow {
-    font-family: var(--font-script);
+    font-family: '1FTV-SAGIRE';
     font-size: 1.2rem;
     font-style: italic;
     color: var(--color-gold);
@@ -85,6 +151,7 @@ h3 {
 }
 
 .section-title {
+    font-family: '1FTV-SAGIRE';
     font-size: clamp(2rem, 4vw, 2.8rem);
     color: var(--color-primary);
 }
@@ -376,7 +443,7 @@ h3 {
 }
 
 .hero-eyebrow {
-    font-family: var(--font-script);
+    font-family: '1FTV-SAGIRE';
     font-style: italic;
     font-size: 1.3rem;
     color: var(--color-gold-light);
@@ -384,6 +451,7 @@ h3 {
 }
 
 .hero-title {
+    font-family: '1FTV-SAGIRE';
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 400;
     letter-spacing: 6px;
@@ -392,6 +460,7 @@ h3 {
 }
 
 .hero-names {
+    font-family: '1FTV-SAGIRE';
     font-size: clamp(2.6rem, 8vw, 5rem);
     display: flex;
     align-items: center;
@@ -424,7 +493,7 @@ h3 {
 }
 
 .hero-date {
-    font-family: var(--font-script);
+    /* font-family: var(--font-script); */
     font-size: 1.4rem;
     letter-spacing: 1px;
     margin-bottom: 34px;
@@ -610,13 +679,14 @@ h3 {
 }
 
 .timeline-date {
-    font-family: var(--font-script);
+    /* font-family: var(--font-script); */
     font-style: italic;
     color: var(--color-gold);
     font-size: 1.1rem;
 }
 
 .timeline-card h3 {
+    font-family: '1FTV-SAGIRE';
     color: var(--color-primary);
     margin: 6px 0 10px;
     font-size: 1.4rem;
@@ -834,7 +904,7 @@ h3 {
 
 .countdown-number {
     display: block;
-    font-family: var(--font-heading);
+    /* font-family: var(--font-heading); */
     font-size: clamp(2rem, 5vw, 3rem);
     color: var(--color-gold-light);
     font-variant-numeric: tabular-nums;
@@ -1236,5 +1306,11 @@ CSS .wish-note code {
 
     .gift-card {
         padding: 30px 22px;
+    }
+
+    #hero .hero-names,
+    #hero .hero-names span,
+    .footer-names span {
+        display: block;
     }
 }
