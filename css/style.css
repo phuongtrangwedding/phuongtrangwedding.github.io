@@ -1313,4 +1313,8 @@ CSS .wish-note code {
     .footer-names span {
         display: block;
     }
+
+    #hero .hero-content .btn.reveal-fade {
+        display: none;
+    }
 }

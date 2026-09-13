@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="manifest" href="images/site.webmanifest">
+    <!-- <link rel="manifest" href="images/site.webmanifest"> -->
     <!-- Google Fonts: elegant serif for headings, refined sans/serif for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -235,32 +235,32 @@
     ============================================================================ -->
     <section id="wishes" class="section wishes-section">
         <div class="section-heading reveal-on-scroll">
-            <p class="section-eyebrow">Share Your Love</p>
-            <h2 class="section-title">Wishes For The Couple</h2>
+            <p class="section-eyebrow">Chia sẻ yêu thương</p>
+            <h2 class="section-title">Lời chúc cho cặp đôi</h2>
             <div class="section-divider"><span></span><i>&#10047;</i><span></span></div>
         </div>
         <div class="wishes-wrap reveal-on-scroll">
             <form id="wishForm" class="wish-form" novalidate>
                 <div class="form-row">
-                    <label for="wishName">Your Name <span aria-hidden="true">*</span></label>
-                    <input type="text" id="wishName" name="name" placeholder="e.g. John Smith" autocomplete="name">
+                    <label for="wishName">Tên người gửi <span aria-hidden="true">*</span></label>
+                    <input type="text" id="wishName" name="name" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="name">
                     <span class="form-error" id="wishNameError"></span>
                 </div>
                 <div class="form-row">
-                    <label for="wishContent">Your Message <span aria-hidden="true">*</span></label>
-                    <textarea id="wishContent" name="content" rows="4" placeholder="Write your congratulations and best wishes..."></textarea>
+                    <label for="wishContent">Lời chúc<span aria-hidden="true">*</span></label>
+                    <textarea id="wishContent" name="content" rows="4" placeholder="Hãy viết lời chúc mừng và những điều tốt đẹp…"></textarea>
                     <span class="form-error" id="wishContentError"></span>
                 </div>
                 <button type="submit" class="btn btn-solid" id="wishSubmitBtn">
-                    <span class="btn-text">Send Your Wishes</span>
+                    <span class="btn-text">Gửi lời chúc</span>
                 </button>
                 <p class="form-status" id="wishFormStatus" role="status" aria-live="polite"></p>
             </form>
             <div class="wishes-list-wrap">
-                <h3 class="wishes-list-title">Messages From Our Loved Ones</h3>
+                <h3 class="wishes-list-title">Những lời nhắn gửi yêu thương</h3>
                 <ul class="wishes-list" id="wishesList">
                     <!-- Wishes are injected here by js/main.js via AJAX -->
-                    <li class="wish-loading" id="wishesLoading">Loading wishes...</li>
+                    <li class="wish-loading" id="wishesLoading">Tải lời chúc...</li>
                 </ul>
             </div>
         </div>

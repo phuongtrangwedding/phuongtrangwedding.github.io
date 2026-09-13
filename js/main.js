@@ -155,8 +155,8 @@ $(function () {
        and locally, since it's just client-side JS talking to Firestore -
        see js/firebase-config.js for the project config, and firestore.rules
        for the write validation rules).
-
-    var wishesCollection = db.collection('wishes'); -------------------------- */
+    -------------------------------------------------------------------------- */
+    var wishesCollection = db.collection('wishes');
 
     function escapeHtml(str) {
         return $('<div>').text(str).html();
@@ -164,12 +164,13 @@ $(function () {
 
     function formatTime(date) {
         if (!date || isNaN(date.getTime())) return '';
-        return date.toLocaleString(undefined, {
+        return date.toLocaleString('vi-VN', {
             year: 'numeric',
-            month: 'short',
-            day: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
             hour: '2-digit',
-            minute: '2-digit'
+            minute: '2-digit',
+            hour12: false
         });
     }
 
@@ -182,7 +183,7 @@ $(function () {
         }
 
         if (!wishes || wishes.length === 0) {
-            $list.append('<li class="wish-empty">Be the first to leave a wish for the couple!</li>');
+            $list.append('<li class="wish-empty">Hãy là người đầu tiên gửi lời chúc đến đôi uyên ương!</li>');
             return;
         }
 
@@ -219,7 +220,7 @@ $(function () {
         renderWishes(wishes);
     }, function (err) {
         console.error('Wishes listener failed:', err);
-        renderWishes([], 'Unable to load shared wishes right now. Please refresh the page.');
+        renderWishes([], 'Rất tiếc, chúng tôi chưa thể tải lời chúc ngay lúc này.');
     });
 
     function setFieldError(fieldId, message) {
@@ -239,14 +240,14 @@ $(function () {
         var valid = true;
 
         if (!name.trim()) {
-            setFieldError('wishName', 'Please enter your name.');
+            setFieldError('wishName', 'Vui lòng cho biết tên của bạn.');
             valid = false;
         } else {
             setFieldError('wishName', '');
         }
 
         if (!content.trim()) {
-            setFieldError('wishContent', 'Please write a short message.');
+            setFieldError('wishContent', 'Vui lòng để lại đôi dòng chia sẻ.');
             valid = false;
         } else {
             setFieldError('wishContent', '');
@@ -267,22 +268,29 @@ $(function () {
         $status.text('').removeClass('success error');
 
         if (!validateForm(name, content)) {
-            $status.addClass('error').text('Please fill in all required fields.');
+            $status.addClass('error').text('Vui lòng nhập đầy đủ thông tin.');
             return;
         }
 
         $submitBtn.prop('disabled', true);
 
+        // var currentUser = auth.currentUser;
+        // if (!currentUser) {
+        //     console.error('Wishes listener connection failed!');
+        //     return;
+        // }
+
         wishesCollection.add({
             name: name.trim(),
             content: content.trim(),
+            // author_uid: currentUser.uid,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         }).then(function () {
-            $status.addClass('success').text('Thank you! Your wish has been shared.');
+            $status.addClass('success').text('Xin chân thành cảm ơn vì lời chúc tốt đẹp của bạn.');
             $form.trigger('reset');
         }).catch(function (err) {
             console.error('Wishes add failed:', err);
-            $status.addClass('error').text('Unable to save your wish right now. Please try again.');
+            $status.addClass('error').text('Không thể lưu lời chúc vào lúc này, vui lòng thử lại sau.');
         }).finally(function () {
             $submitBtn.prop('disabled', false);
         });
