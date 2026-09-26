@@ -1249,6 +1249,11 @@ CSS .wish-note code {
         letter-spacing: 2px;
     }
 
+    .hero-content {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
     .timeline-line {
         left: 30px;
     }
