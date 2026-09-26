@@ -340,7 +340,7 @@ h3 {
 .nav-link {
     color: var(--color-white);
     font-size: 0.85rem;
-    letter-spacing: 1px;
+    letter-spacing: 0.1px;
     text-transform: uppercase;
     position: relative;
     padding-bottom: 4px;
@@ -1168,7 +1168,7 @@ CSS .wish-note code {
 }
 
 .footer-note {
-    max-width: 480px;
+    /* max-width: 480px; */
     margin: 0 auto 26px;
     color: rgba(255, 255, 255, 0.75);
     font-size: 0.95rem;
@@ -1246,6 +1246,7 @@ CSS .wish-note code {
         padding: 16px 0;
         width: 100%;
         text-align: center;
+        letter-spacing: 2px;
     }
 
     .timeline-line {
