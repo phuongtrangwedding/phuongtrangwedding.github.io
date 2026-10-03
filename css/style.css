@@ -1207,6 +1207,7 @@ CSS .wish-note code {
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
 }
 
 .footer-note {
@@ -1282,7 +1283,7 @@ CSS .wish-note code {
 .note {
     position: absolute;
     font-size: 24px;
-    color: #ff69b4;
+    color: #00513a;
     animation: floatNote 3s linear forwards;
 }
 
