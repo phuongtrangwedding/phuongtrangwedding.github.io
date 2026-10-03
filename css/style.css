@@ -676,6 +676,7 @@ h3 {
 
 .timeline-item .timeline-card {
     justify-self: start;
+    min-width: 70%;
 }
 
 .timeline-item.reverse .timeline-photo {
@@ -687,6 +688,7 @@ h3 {
     order: 1;
     justify-self: end;
     text-align: right;
+    min-width: 70%;
 }
 
 .timeline-photo img {
@@ -1328,8 +1330,8 @@ CSS .wish-note code {
     }
 
     .timeline-photo img {
-        width: 130px;
-        height: 130px;
+        width: 220px;
+        height: 220px;
     }
 
     .gallery-grid {
@@ -1337,9 +1339,9 @@ CSS .wish-note code {
         grid-auto-rows: 140px;
     }
 
-    .info-grid {
+    /* .info-grid {
         grid-template-columns: 1fr;
-    }
+    } */
 
     .countdown {
         gap: 12px;
