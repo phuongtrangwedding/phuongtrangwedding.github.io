@@ -1424,9 +1424,9 @@ CSS .wish-note code {
         grid-auto-rows: 140px;
     }
 
-    /* .info-grid {
+    .info-grid {
         grid-template-columns: 1fr;
-    } */
+    }
 
     .countdown {
         gap: 12px;
