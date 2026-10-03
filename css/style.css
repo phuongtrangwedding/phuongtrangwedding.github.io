@@ -608,6 +608,20 @@ h3 {
 }
 
 /* ============================================================================
+   THANKS LETTER
+   ============================================================================ */
+.thanks-letter-section {
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+}
+
+.thanks-letter-section img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================================================
    2. OUR STORY / TIMELINE
    ============================================================================ */
 .story-section {
