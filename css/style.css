@@ -1372,6 +1372,10 @@ CSS .wish-note code {
         letter-spacing: 2px;
     }
 
+    .section-eyebrow {
+        font-size: 0.8rem;
+    }
+
     .hero-content {
         padding-bottom: 0;
         padding-top: 0;
