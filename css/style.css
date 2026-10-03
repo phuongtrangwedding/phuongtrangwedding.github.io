@@ -423,7 +423,7 @@ h3 {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 50, 38, 0.55) 0%, rgba(0, 81, 59, 0.72) 55%, rgba(0, 50, 38, 0.55) 100%);
+    background: rgb(0, 0, 0, 0.4);
 }
 
 .hero-ornament {
@@ -435,11 +435,31 @@ h3 {
     opacity: 0.85;
 }
 
+.hero-logo {
+    max-width: 75px;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .hero-content {
-    position: relative;
     z-index: 2;
     padding: 24px;
     color: var(--color-white);
+    position: absolute;
+    bottom: 80px;
+}
+
+.hero-content .hero-content-1 {
+    margin-bottom: 0;
+}
+
+.hero-content .hero-content-2 img {
+    max-width: 750px;
+    width: 100%;
 }
 
 .hero-eyebrow {
