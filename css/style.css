@@ -1189,7 +1189,8 @@ CSS .wish-note code {
 
 .footer-names img {
     max-width: 400px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-note {
