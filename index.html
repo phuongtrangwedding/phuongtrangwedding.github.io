@@ -92,7 +92,7 @@
     <section id="gallery" class="section gallery-section">
         <div class="section-heading reveal-on-scroll">
             <p class="section-eyebrow">To have and to hold</p>
-            <h2 class="section-title">To Love and To Cherish</h2>
+            <h2 class="section-title">To Love and Cherish</h2>
             <div class="section-divider"><span></span><i>&#10047;</i><span></span></div>
         </div>
         <!-- <div class="gallery-grid reveal-on-scroll">
@@ -246,7 +246,6 @@
     <script src="js/main.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-
             const music = document.getElementById("bgMusic");
             const disc = document.getElementById("music-disc");
             const noteContainer = document.getElementById("music-notes");
@@ -255,17 +254,12 @@
 
             function createNote() {
                 const note = document.createElement("div");
-
                 note.className = "note";
-
                 note.innerHTML = ["🎵", "🎶", "♪", "♫"][
                     Math.floor(Math.random() * 4)
                 ];
-
                 note.style.setProperty("--x", Math.random());
-
                 noteContainer.appendChild(note);
-
                 setTimeout(() => {
                     note.remove();
                 }, 3000);
@@ -280,21 +274,13 @@
             }
 
             disc.addEventListener("click", function () {
-
                 if (music.paused) {
-
                     music.play();
-
                     disc.classList.add("playing");
-
                     startNotes();
-
                 } else {
-
                     music.pause();
-
                     disc.classList.remove("playing");
-
                     stopNotes();
                 }
             });
