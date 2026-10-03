@@ -51,7 +51,7 @@
     ============================================================================ -->
     <div class="thanks-letter-section" style="background-image:url('images/hình-thiep-1.png');">
         <div class="section reveal-on-scroll">
-            <img src="images/hình-thiep-2.png">
+            <img src="images/hình-thiep-3.png">
         </div>
     </div>
     <!-- ============================================================================
@@ -228,6 +228,15 @@
         <p class="footer-copy">&copy; <span id="footerYear"></span> Hà Phương & Huyền Trang &middot; Được tạo nên bằng tất cả yêu thương</p>
     </footer>
     <!-- ============================================================================
+        MUSIC
+    ============================================================================ -->
+    <audio id="bgMusic" src="images/its-a-love-like-a-dream-a-beautiful-blur.mp3" autoplay loop>
+    </audio>
+    <div id="music-disc">
+        <img src="images/dia-nhac.png" alt="Music Disc">
+    </div>
+    <div id="music-notes"></div>
+    <!-- ============================================================================
         SCRIPTS
     ============================================================================ -->
     <script src="js/jquery-3.7.1.min.js"></script>
@@ -235,6 +244,63 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script src="js/firebase-config.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const music = document.getElementById("bgMusic");
+            const disc = document.getElementById("music-disc");
+            const noteContainer = document.getElementById("music-notes");
+
+            let noteInterval;
+
+            function createNote() {
+                const note = document.createElement("div");
+
+                note.className = "note";
+
+                note.innerHTML = ["🎵", "🎶", "♪", "♫"][
+                    Math.floor(Math.random() * 4)
+                ];
+
+                note.style.setProperty("--x", Math.random());
+
+                noteContainer.appendChild(note);
+
+                setTimeout(() => {
+                    note.remove();
+                }, 3000);
+            }
+
+            function startNotes() {
+                noteInterval = setInterval(createNote, 500);
+            }
+
+            function stopNotes() {
+                clearInterval(noteInterval);
+            }
+
+            disc.addEventListener("click", function () {
+
+                if (music.paused) {
+
+                    music.play();
+
+                    disc.classList.add("playing");
+
+                    startNotes();
+
+                } else {
+
+                    music.pause();
+
+                    disc.classList.remove("playing");
+
+                    stopNotes();
+                }
+            });
+
+        });
+    </script>
 </body>
 
 </html>
