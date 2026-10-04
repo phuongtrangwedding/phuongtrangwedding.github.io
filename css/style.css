@@ -152,7 +152,7 @@ h3 {
 
 .section-title {
     font-family: '1FTV-SAGIRE';
-    font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+    font-size: clamp(1.4rem, 2.5vw, 2.8rem);
     color: var(--color-primary);
 }
 
@@ -890,7 +890,7 @@ h3 {
 }
 
 .info-icon img {
-    max-width: 50px;
+    max-width: 60px;
     margin: 0 auto;
 }
 
@@ -1248,8 +1248,8 @@ CSS .wish-note code {
     border-radius: 50%;
     opacity: 0.5;
     /* Mặc định không xoay */
-    animation: spin 4s linear infinite;
-    animation-play-state: paused;
+    animation: spin 5s linear infinite;
+    /* animation-play-state: paused; */
 }
 
 /* Khi đang phát nhạc */
@@ -1438,8 +1438,8 @@ CSS .wish-note code {
     }
 
     .countdown-box {
-        min-width: 78px;
-        padding: 16px 14px;
+        min-width: 70px;
+        padding: 16px 10px;
     }
 
     .gift-card {
